@@ -4,6 +4,7 @@ import com.hande.RestfulDemo.model.Beer;
 import com.hande.RestfulDemo.model.BeerStyle;
 import com.hande.RestfulDemo.services.BeerService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ import java.util.UUID;
  * handebarkan
  */
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController //convert to json body
 @RequestMapping("/api/v1/beer")
 public class BeerController {
