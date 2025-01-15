@@ -1,6 +1,6 @@
 package com.hande.RestfulDemo.services;
 
-import com.hande.RestfulDemo.model.Beer;
+import com.hande.RestfulDemo.model.BeerDTO;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,15 +10,15 @@ import java.util.UUID;
  * handebarkan
  */
 public interface BeerService {
-    List<Beer> listBeers();
+    List<BeerDTO> listBeers();
 
-    Beer getBeerById(UUID id);
+    BeerDTO getBeerById(UUID id);
 
-    Beer saveNewBeer(Beer beer);
+    BeerDTO saveNewBeer(BeerDTO beer);
 
-    void updateBeerById(UUID beerId, Beer beer);
+    void updateBeerById(UUID beerId, BeerDTO beer);
 
     void deleteById(UUID beerId);
 
-    void patchBeerById(UUID beerId, Beer beer);
+    void patchBeerById(UUID beerId, BeerDTO beer);
 }

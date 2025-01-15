@@ -1,6 +1,6 @@
 package com.hande.RestfulDemo.services;
 
-import com.hande.RestfulDemo.model.Customer;
+import com.hande.RestfulDemo.model.CustomerDTO;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,15 +10,15 @@ import java.util.UUID;
  * handebarkan
  */
 public interface CustomerService {
-    Customer getCustomerById(UUID id);
+    CustomerDTO getCustomerById(UUID id);
 
-    List<Customer> listCustomers();
+    List<CustomerDTO> listCustomers();
 
-    Customer saveNewCustomer(Customer customer);
+    CustomerDTO saveNewCustomer(CustomerDTO customer);
 
-    void updateCustomerById(UUID customerId, Customer customer);
+    void updateCustomerById(UUID customerId, CustomerDTO customer);
 
     void deleteCustomerById(UUID customerId);
 
-    void patchCustomerById(UUID customerId, Customer customer);
+    void patchCustomerById(UUID customerId, CustomerDTO customer);
 }
