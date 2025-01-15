@@ -21,24 +21,26 @@ import java.util.UUID;
 @Slf4j
 @RequiredArgsConstructor
 @RestController //convert to json body
-@RequestMapping("/api/v1/customer")
+@RequestMapping
 public class CustomerController {
+    public static final String CUSTOMER_PATH = "/api/v1/customer";
+    public static final String CUSTOMER_PATH_ID = "/api/v1/customer" + "/{customerId}";
 
     private final CustomerService customerService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping(CUSTOMER_PATH)
     public List<Customer> listBCustomer() {
         return customerService.listCustomers();
     }
 
-    @RequestMapping(value = "/{customerId}", method = RequestMethod.GET)
+    @GetMapping(CUSTOMER_PATH_ID)
     public Customer getCustomerById(@PathVariable("customerId") UUID customerId) {
         log.debug("Get customerId by Id - in controller");
 
         return customerService.getCustomerById(customerId);
     }
 
-    @PostMapping
+    @PostMapping(CUSTOMER_PATH)
     public ResponseEntity handlePost(@RequestBody Customer customer) {
         Customer savedCustomer = customerService.saveNewCustomer(customer);
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -48,18 +50,19 @@ public class CustomerController {
 
     }
 
-    @PutMapping("{customerId}")
+    @PutMapping(CUSTOMER_PATH_ID)
     public ResponseEntity updateCustomerById(@PathVariable("customerId") UUID customerId, @RequestBody Customer customer) {
         customerService.updateCustomerById(customerId, customer);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("{customerId}")
+    @DeleteMapping(CUSTOMER_PATH_ID)
     public ResponseEntity deleteById(@PathVariable("customerId") UUID customerId){
         customerService.deleteCustomerById(customerId);
         return new ResponseEntity((HttpStatus.NO_CONTENT));
     }
 
+    @PatchMapping(CUSTOMER_PATH_ID)
     public ResponseEntity patchById(@PathVariable("customerId") UUID customerId, @RequestBody Customer customer) {
         customerService.patchCustomerById(customerId, customer);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
