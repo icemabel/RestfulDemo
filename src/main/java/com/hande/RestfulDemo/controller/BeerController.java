@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.swing.event.HyperlinkEvent;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /*
@@ -61,6 +62,7 @@ public class BeerController {
     public List<Beer> listBeers() {
         return beerService.listBeers();
     }
+
 
     @GetMapping(BEER_PATH_ID)
     public Beer getBeerById(@PathVariable("beerId") UUID beerId) {
