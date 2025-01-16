@@ -1,5 +1,6 @@
 package com.hande.RestfulDemo.services;
 
+import com.hande.RestfulDemo.controller.NotFoundException;
 import com.hande.RestfulDemo.mappers.BeerMapper;
 import com.hande.RestfulDemo.model.BeerDTO;
 import com.hande.RestfulDemo.repositories.BeerRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Primary
@@ -19,12 +21,16 @@ public class BeerServiceJPA implements BeerService {
 
     @Override
     public List<BeerDTO> listBeers() {
-        return List.of();
+        return beerRepository.findAll()
+                .stream()
+                .map(beerMapper::beerToBeerDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public BeerDTO getBeerById(UUID id) {
-        return null;
+        return beerMapper.beerToBeerDto(beerRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException()));
     }
 
     @Override
