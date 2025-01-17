@@ -1,5 +1,7 @@
 package com.hande.RestfulDemo.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,6 +16,9 @@ import java.util.UUID;
 @Builder
 public class CustomerDTO {
     private UUID customerId;
+
+    @NotNull
+    @NotBlank
     private String customerName;
     private Integer version;
     private LocalDateTime createdDate;
