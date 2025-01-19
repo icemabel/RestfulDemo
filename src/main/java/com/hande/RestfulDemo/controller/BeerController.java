@@ -27,7 +27,7 @@ public class BeerController {
     private final BeerService beerService; //no need to generate constructor for DI, lombok did it with AllArgs
 
     @PatchMapping(BEER_PATH_ID)
-    public ResponseEntity updateBeerPatchById(@PathVariable("beerId") UUID beerId, @RequestBody @Validated BeerDTO beer) {
+    public ResponseEntity updateBeerPatchById(@PathVariable("beerId") UUID beerId, @Validated @RequestBody BeerDTO beer) {
         beerService.patchBeerById(beerId, beer);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
